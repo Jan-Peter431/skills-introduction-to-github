@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+</head>
+<body>
+    {% if is_correct is not none %}
+        <p>
+            {% if is_correct %}
+                🎉 Richtig!
+            {% else %}
+                ❌ Falsch! Die richtige Antwort ist: {{ correct_answer }}
+            {% endif %}
+        </p>
+        <a href="/quiz">Weiter</a>
+    {% else %}
+        <form method="post">
+            <h3>Wie heißt "{{ question['Russisch'] }}" auf Deutsch?</h3>
+            <input type="hidden" name="question" value="{{ question['Russisch'] }}">
+            <input type="hidden" name="correct_answer" value="{{ question['Deutsch'] }}">
+            <input type="text" name="answer" placeholder="Deine Antwort" required>
+            <button type="submit">Überprüfen</button>
+        </form>
+    {% endif %}
+</body>
+</html>
